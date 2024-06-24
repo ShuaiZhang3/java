@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // MagicOfBooks class to manage users and book functionalities
-class MagicOfBooks {
+public class MagicOfBooks {
     private final User[] users;
     private int userCount;
 
@@ -113,7 +113,7 @@ class MagicOfBooks {
     }
 
     // Main menu method to display options and handle user input
-    public void menu() {
+    public void menu() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1. Register");
@@ -135,9 +135,12 @@ class MagicOfBooks {
                     userName = scanner.nextLine();
                     System.out.println("Enter Password:");
                     password = scanner.nextLine();
+
                     User user = loginUser(userName, password);
                     if (user != null) {
-                        userMenu(user);
+                        UserBookMultiThread userBookMultiThread = new UserBookMultiThread(this, user);
+                        userBookMultiThread.start();
+                        userBookMultiThread.join();
                     } else {
                         System.out.println("Invalid username or password.");
                     }
@@ -153,7 +156,7 @@ class MagicOfBooks {
     }
 
     // User menu method to display user-specific options and handle input
-    private void userMenu(User user) {
+    public void userMenu(User user) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1. View Books");

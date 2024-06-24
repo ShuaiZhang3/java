@@ -18,40 +18,41 @@ public class Visitor extends User {
 
     @Override
     public void displayMenu() throws NullTaskException {
+        synchronized(this) {
+            int choice = -1;
 
-        int choice = -1;
-
-        while (choice != 0) {
-            try {
-            PrintHelper.printVisitorMenu();
-            Scanner scanner = new Scanner(System.in);
-            choice = scanner.nextInt();
-            scanner.nextLine();
-                switch (choice) {
-                    case 1:
-                        viewAssignedTasks(scanner);
-                        break;
-                    case 2:
-                        markTaskAsCompleted(scanner);
-                        break;
-                    case 3:
-                        viewCompletedIncompleteTasks(scanner);
-                        break;
-                    case 4:
-                        sortTasks(scanner);
-                        break;
-                    case 0:
-                        System.out.println("Logging out");
-                        break;
-                    default:
-                        System.out.println("Invalid choice");
+            while (choice != 0) {
+                try {
+                    PrintHelper.printVisitorMenu();
+                    Scanner scanner = new Scanner(System.in);
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (choice) {
+                        case 1:
+                            viewAssignedTasks(scanner);
+                            break;
+                        case 2:
+                            markTaskAsCompleted(scanner);
+                            break;
+                        case 3:
+                            viewCompletedIncompleteTasks(scanner);
+                            break;
+                        case 4:
+                            sortTasks(scanner);
+                            break;
+                        case 0:
+                            System.out.println("Logging out");
+                            break;
+                        default:
+                            System.out.println("Invalid choice");
+                    }
+                } catch (CastingException e) {
+                    System.out.println(e.getMessage());
+                } catch (InputMismatchException e) {
+                    System.out.println("please input a number value");
+                } catch (NullTaskException e) {
+                    System.out.println(e.getMessage());
                 }
-            } catch (CastingException e) {
-                System.out.println(e.getMessage());
-            }catch (InputMismatchException e) {
-                System.out.println("please input a number value");
-            }catch (NullTaskException e) {
-                System.out.println(e.getMessage());
             }
         }
     }

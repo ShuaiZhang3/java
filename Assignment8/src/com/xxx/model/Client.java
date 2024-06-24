@@ -18,49 +18,51 @@ public class Client extends User {
 
     @Override
     public void displayMenu() throws CRUDTaskException {
+        synchronized(this){
+            int choice = -1;
 
-        int choice = -1;
+            while (choice != 0) {
 
-        while (choice != 0) {
-
-            try {
-            PrintHelper.printClientMenu();
-            Scanner scanner = new Scanner(System.in);
-            choice = scanner.nextInt();
-            scanner.nextLine();
-                switch (choice) {
-                    case 1:
-                        addTask(scanner);
-                        break;
-                    case 2:
-                        updateTask(scanner);
-                        break;
-                    case 3:
-                        deleteTask(scanner);
-                        break;
-                    case 4:
-                        searchTask(scanner);
-                        break;
-                    case 5:
-                        assignTask(scanner);
-                        break;
-                    case 6:
-                        sortTasks(scanner);
-                        break;
-                    case 0:
-                        System.out.println("Logging out");
-                        break;
-                    default:
-                        System.out.println("Invalid choice");
+                try {
+                    PrintHelper.printClientMenu();
+                    Scanner scanner = new Scanner(System.in);
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (choice) {
+                        case 1:
+                            addTask(scanner);
+                            break;
+                        case 2:
+                            updateTask(scanner);
+                            break;
+                        case 3:
+                            deleteTask(scanner);
+                            break;
+                        case 4:
+                            searchTask(scanner);
+                            break;
+                        case 5:
+                            assignTask(scanner);
+                            break;
+                        case 6:
+                            sortTasks(scanner);
+                            break;
+                        case 0:
+                            System.out.println("Logging out");
+                            break;
+                        default:
+                            System.out.println("Invalid choice");
+                    }
+                } catch (CastingException e) {
+                    System.out.println(e.getMessage());
+                } catch (CRUDTaskException e) {
+                    System.out.println(e.getMessage());
+                }catch (InputMismatchException e) {
+                    System.out.println("please input a number value");
                 }
-            } catch (CastingException e) {
-                System.out.println(e.getMessage());
-            } catch (CRUDTaskException e) {
-                System.out.println(e.getMessage());
-            }catch (InputMismatchException e) {
-                System.out.println("please input a number value");
             }
         }
+
     }
 
     private void addTask(Scanner scanner) throws CRUDTaskException {

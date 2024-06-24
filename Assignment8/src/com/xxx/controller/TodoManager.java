@@ -1,5 +1,6 @@
 package com.xxx.controller;
 
+import com.xxx.MultiThread.UserMultiThread;
 import com.xxx.exception.*;
 import com.xxx.model.User;
 import com.xxx.service.TaskService;
@@ -20,15 +21,17 @@ public class TodoManager {
 
             try {
                 Scanner scanner = new Scanner(System.in);
+                User loggedInUser;
                 PrintHelper.printMainMenu();
-                User loggedInUser = null;
                 choice = scanner.nextInt();
                 scanner.nextLine();
 
                 switch (choice) {
                     case 1:
                         loggedInUser = userService.loginUser(scanner);
-                        loggedInUser.displayMenu();
+                        UserMultiThread userThread = new UserMultiThread(loggedInUser);
+                        userThread.start();
+                        userThread.join();
                         break;
                     case 2:
                         userService.registerNewUser(scanner, taskService);
@@ -38,20 +41,16 @@ public class TodoManager {
                     default:
                         System.out.println("Invalid choice. Please try again.");
                 }
-            } catch (AuthException e) {
-                System.out.println(e.getMessage());
             } catch (RegisterException e) {
-                System.out.println(e.getMessage());
-            } catch (NullTaskException e) {
                 System.out.println(e.getMessage());
             } catch (UserListFullException e) {
                 System.out.println(e.getMessage());
-            } catch (CastingException e) {
-                System.out.println(e.getMessage());
             } catch (InputMismatchException e) {
                 System.out.println("please input a number value");
-            } catch (CRUDTaskException e) {
-                System.out.println(e.getMessage());
+            } catch (AuthException e) {
+                System.out.println("AuthException");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }
