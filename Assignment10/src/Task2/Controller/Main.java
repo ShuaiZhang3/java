@@ -20,15 +20,23 @@ public class Main {
         jukebox.addPodcast(MediaFactory.createPodcast("Podcast2", "Celebrity2", LocalDate.of(2023, 7, 2)));
         jukebox.addPodcast(MediaFactory.createPodcast("Podcast3", "Celebrity1", LocalDate.of(2023, 7, 3)));
 
-//        // Display all songs
-//        System.out.println("All Songs:");
-//        jukebox.getAllSongs().forEach(System.out::println);
-//
-//        // Display all podcasts
-//        System.out.println("\nAll Podcasts:");
-//        jukebox.getAllPodcasts().forEach(System.out::println);
+        System.out.println("================Task1================");
+        // Display all songs
+        System.out.println("All Songs:");
+        jukebox.getAllSongs().forEach(System.out::println);
+        // Search by artist
+        System.out.println("\nSongs by Artist1:");
+        jukebox.searchSongs(SearchStrategy.SearchType.SONG_ARTIST, "Artist1").forEach(System.out::println);
+        // Search by genre
+        System.out.println("\nRock Songs:");
+        jukebox.searchSongs(SearchStrategy.SearchType.SONG_GENRE, "Rock").forEach(System.out::println);
+        // Search by album
+        System.out.println("\nSongs in Album2:");
+        jukebox.searchSongs(SearchStrategy.SearchType.SONG_ALBUM, "Album2").forEach(System.out::println);
+        System.out.println("================Task2================");
 
-
+        System.out.println("All Podcasts:");
+        jukebox.getAllPodcasts().forEach(System.out::println);
         // Search podcasts by celebrity
         System.out.println("\nPodcasts by Celebrity1:");
         jukebox.searchPodcasts(SearchStrategy.SearchType.PODCAST_CELEBRITY, "Celebrity1").forEach(System.out::println);

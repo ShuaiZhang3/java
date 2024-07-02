@@ -13,6 +13,7 @@ public class Main {
         jukebox.addSong(SongFactory.createSong("Song3", "Artist1", "Rock", "Album3"));
         jukebox.addSong(SongFactory.createSong("Song4", "Artist3", "Jazz", "Album4"));
 
+        System.out.println("================Task1================");
         // Display all songs
         System.out.println("All Songs:");
         jukebox.getAllSongs().forEach(System.out::println);
