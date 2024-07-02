@@ -22,6 +22,7 @@ public class Catalog {
 
     public void addSong(Song song) {
         songs.add(song);
+        songs.sort((s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
     }
 
     public List<Song> getAllSongs() {

@@ -10,10 +10,11 @@ public class Main {
         Jukebox jukebox = new Jukebox();
 
         // Adding songs to the jukebox
-        jukebox.addSong(MediaFactory.createSong("Song1", "Artist1", "Rock", "Album1"));
+        jukebox.addSong(MediaFactory.createSong("Song5", "Artist1", "Rock", "Album1"));
         jukebox.addSong(MediaFactory.createSong("Song2", "Artist2", "Pop", "Album2"));
         jukebox.addSong(MediaFactory.createSong("Song3", "Artist1", "Rock", "Album3"));
         jukebox.addSong(MediaFactory.createSong("Song4", "Artist3", "Jazz", "Album4"));
+        jukebox.addSong(MediaFactory.createSong("Song1", "Artist3", "Pop", "Album6"));
 
         // Adding podcasts to the jukebox
         jukebox.addPodcast(MediaFactory.createPodcast("Podcast1", "Celebrity1", LocalDate.of(2023, 7, 1)));

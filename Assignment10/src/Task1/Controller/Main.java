@@ -8,10 +8,11 @@ public class Main {
         Jukebox jukebox = new Jukebox();
 
         // Adding songs to the jukebox
-        jukebox.addSong(SongFactory.createSong("Song1", "Artist1", "Rock", "Album1"));
+        jukebox.addSong(SongFactory.createSong("Song5", "Artist1", "Rock", "Album1"));
         jukebox.addSong(SongFactory.createSong("Song2", "Artist2", "Pop", "Album2"));
         jukebox.addSong(SongFactory.createSong("Song3", "Artist1", "Rock", "Album3"));
         jukebox.addSong(SongFactory.createSong("Song4", "Artist3", "Jazz", "Album4"));
+        jukebox.addSong(SongFactory.createSong("Song1", "Artist3", "Pop", "Album6"));
 
         System.out.println("================Task1================");
         // Display all songs
